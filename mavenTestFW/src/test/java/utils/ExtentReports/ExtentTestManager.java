@@ -2,7 +2,10 @@ package utils.ExtentReports;
 
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,9 +21,11 @@ public class ExtentTestManager {
 
     static Map extentTestMap = new HashMap();
     static ExtentReports extent = ExtentManager.getReporter();
+    public WebDriverWait wait;
 
     public static synchronized ExtentTest getTest() {
         return (ExtentTest)extentTestMap.get((int) (long) (Thread.currentThread().getId()));
+
     }
 
     public static synchronized void endTest() {
@@ -32,4 +37,6 @@ public class ExtentTestManager {
         extentTestMap.put((int) (long) (Thread.currentThread().getId()), test);
         return test;
     }
+
+
 }

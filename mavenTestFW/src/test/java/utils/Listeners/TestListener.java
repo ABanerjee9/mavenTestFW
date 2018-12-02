@@ -65,12 +65,14 @@ public class TestListener extends BaseTest implements ITestListener {
         ExtentTestManager.getTest().log(LogStatus.FAIL,"Test Failed",
                 ExtentTestManager.getTest().addBase64ScreenShot(base64Screenshot));
     }
+
     @Override
     public void onTestSkipped(ITestResult iTestResult) {
         System.out.println("I am in onTestSkipped method "+  getTestMethodName(iTestResult) + " skipped");
         //Extentreports log operation for skipped tests.
         ExtentTestManager.getTest().log(LogStatus.SKIP, "Test Skipped");
     }
+
     @Override
     public void onTestFailedButWithinSuccessPercentage(ITestResult iTestResult) {
         System.out.println("Test failed but it is in defined success ratio " + getTestMethodName(iTestResult));

@@ -3,6 +3,7 @@ pages\BasePage.class
 utils\ExtentReports\ExtentTestManager.class
 pages\HomePage.class
 tests\BaseTest.class
+utils\ExtentReports\GetScreenShot.class
 utils\Listeners\Retry.class
 utils\Listeners\TestListener.class
 cts\com\AppTest.class

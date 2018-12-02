@@ -1,34 +1,45 @@
 package pages;
 
+import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class BasePage {
+import java.io.File;
+import java.io.IOException;
 
-    public static final int TIMEOUT = 5;
-    public static final int POLLING = 10;
+public class BasePage {
 
     protected WebDriver driver;
     private WebDriverWait wait;
+    public ExtentTest test;
 
     //Constructor WebDriver object argument to initialize a WebDriverWait object
-    public BasePage(WebDriver driver) {
+    public BasePage(WebDriver driver, ExtentTest test, WebDriverWait wait) {
         this.driver = driver;
-        wait = new WebDriverWait(driver, TIMEOUT, POLLING);
+        this.wait = wait;
+        this.test= test;
         //PageFactory.initElements(new AjaxElementLocatorFactory(driver, TIMEOUT),this);
     }
 
     //Navigate to URL
-    public void getURL() {
+    public void getURL(ExtentTest test) {
+        String url = "https://www.fnp.com";
         try {
-            driver.get("https://www.fnp.com/");
+            driver.manage().deleteAllCookies();
+            driver.get(url);
+            test.log(LogStatus.PASS, "FNP URL Launched"+url);
 
         } catch (Exception e) {
             e.printStackTrace();
+            test.log(LogStatus.FAIL," Loading URL - Fail");
         }
     }
 

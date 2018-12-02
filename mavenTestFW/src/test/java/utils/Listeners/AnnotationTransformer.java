@@ -7,9 +7,8 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 
 //*********************AnnotationTransformer class for Retry failed test cases which implements IAnnotationTransformer
-
 public class AnnotationTransformer implements IAnnotationTransformer {
-    @Override
+
     public void transform(ITestAnnotation annotation, Class testClass, Constructor testConstructor, Method testMethod) {
         annotation.setRetryAnalyzer(Retry.class);
     }
